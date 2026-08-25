@@ -5,19 +5,61 @@
    for accessibility/future reuse, but let the supplied artwork own the visual hero. */
 .hero {
   position: relative;
-  min-height: clamp(560px, 72vh, 820px);
-  background: #0b1020 url("hero-background.png") center center / cover no-repeat;
+  min-height: 0;
+  background: #0b1020;
   overflow: hidden;
 }
 
 .hero-grid {
   display: block;
-  min-height: inherit;
+  width: 100%;
+  min-height: 0;
 }
 
 .hero-copy,
+.hero-tint,
+.hero-stamp {
+  display: none !important;
+}
+
 .hero-media {
-  display: none;
+  display: block;
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  background: #0b1020;
+}
+
+.hero-media > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  max-width: none;
+  object-fit: contain;
+  object-position: center center;
+  filter: none;
+}
+
+/* The supplied artwork is already composed as the complete hero. Display it at
+   its natural aspect ratio so its logo, headline and lower copy are never cut off. */
+@media (max-width: 900px) {
+  .hero-media > img {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-media > img {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+  }
 }
 
 .intro-section {
@@ -124,15 +166,5 @@
 }
 
 @media (max-width: 900px) {
-  .hero {
-    min-height: 520px;
-    background-position: center center;
-  }
-}
-
-@media (max-width: 640px) {
-  .hero {
-    min-height: 440px;
-    background-position: 62% center;
-  }
+  .intro-grid::after { display: none; }
 }
