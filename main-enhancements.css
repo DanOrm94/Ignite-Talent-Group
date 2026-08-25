@@ -1,37 +1,23 @@
 /* Ignite Talent Group — main-site visual alignment pass */
 
-/* Bring the corporate homepage closer to the live site's confident, editorial feel. */
+/* The supplied hero-background.png is a complete hero composition, including the
+   logo, headline and supporting copy. Keep the existing hero markup in the DOM
+   for accessibility/future reuse, but let the supplied artwork own the visual hero. */
 .hero {
-  background:
-    radial-gradient(circle at 18% 28%, rgba(69,82,255,.08), transparent 34%),
-    var(--warm);
+  position: relative;
+  min-height: clamp(560px, 72vh, 820px);
+  background: #0b1020 url("hero-background.png") center center / cover no-repeat;
+  overflow: hidden;
 }
 
-.hero-copy {
-  padding-top: clamp(70px, 8vw, 110px);
-  padding-bottom: clamp(70px, 8vw, 110px);
+.hero-grid {
+  display: block;
+  min-height: inherit;
 }
 
-.hero-copy h1 {
-  max-width: 720px;
-  font-weight: 850;
-}
-
-.hero-lead {
-  max-width: 650px;
-}
-
+.hero-copy,
 .hero-media {
-  box-shadow: inset 1px 0 rgba(17,19,24,.08);
-}
-
-.hero-media > img {
-  object-position: 56% center;
-}
-
-.hero-stamp {
-  width: min(250px, calc(100% - 48px));
-  border-radius: 18px;
+  display: none;
 }
 
 .intro-section {
@@ -138,14 +124,15 @@
 }
 
 @media (max-width: 900px) {
-  .hero-grid { grid-template-columns: 1fr; }
-  .hero-copy { padding-right: 0; }
-  .hero-media { margin-right: 0; }
-  .hero-media > img { min-height: 520px; }
-  .intro-grid::after { display: none; }
+  .hero {
+    min-height: 520px;
+    background-position: center center;
+  }
 }
 
 @media (max-width: 640px) {
-  .hero-media > img { min-height: 420px; }
-  .hero-stamp { right: 20px; bottom: 20px; }
+  .hero {
+    min-height: 440px;
+    background-position: 62% center;
+  }
 }
